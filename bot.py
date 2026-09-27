@@ -1064,6 +1064,23 @@ def compose(
 app = FastAPI(title="Vera Merchant Assistant", version="1.0.0")
 
 
+@app.get("/")
+async def root():
+    """
+    Root status endpoint for browser checks.
+    """
+    return {
+        "service": "Vera Merchant Assistant — magicpin AI Challenge",
+        "author": "Nidhi",
+        "status": "online",
+        "endpoints": {
+            "healthz": "/v1/healthz",
+            "metadata": "/v1/metadata",
+            "docs": "/docs"
+        }
+    }
+
+
 @app.get("/v1/healthz")
 async def healthz():
     """
